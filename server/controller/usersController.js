@@ -17,6 +17,12 @@ class UsersController {
     return res.status(200).json(user);
   }
 
+  static async createUser(req, res) {
+    const newUser = await req.body;
+    const user = await database.Users.create(newUser);
+    return res.status(200).json(user);
+  }
+
 }
 
 module.exports = UsersController;

@@ -17,6 +17,12 @@ class ProductsController {
     return res.status(200).json(product);
   }
 
+  static async createProduct(req, res) {
+    const newProduct = await req.body;
+    const product = await database.Products.create(newProduct);
+    return res.status(200).json(product);
+  }
+
 }
 
 module.exports = ProductsController;
