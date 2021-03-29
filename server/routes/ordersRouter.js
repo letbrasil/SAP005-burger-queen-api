@@ -7,9 +7,9 @@ const router = Router();
 router.get('/', OrdersController.getAllOrders);
 
 //  *** CRIAR FUNÇÕES DE CADA ENDPOINT NO CONTROLLER ***
-// router.get('/:orderid', OrdersController.funcao)
-// router.post('/', OrdersController.funcao)
-// router.put('/:orderid', OrdersController.funcao)
-// router.delete('/:orderid', OrdersController.funcao)
+// router.get('/:orderId', OrdersController.funcao);
+// router.post('/', OrdersController.funcao);
+// router.put('/:orderId', OrdersController.funcao);
+// router.delete('/:orderId', OrdersController.funcao);
 
 module.exports = router;

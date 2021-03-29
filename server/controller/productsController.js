@@ -1,7 +1,22 @@
-// aqui vai o código que acessa o banco de dados
+const database = require('../db/models');
 
-const getAllProducts = (req, res) => {
-  res.send('Testando rota "/products"');
-};
+class ProductsController {
 
-module.exports = { getAllProducts };
+  static async getAllProducts(req, res) {
+    const products = await database.Products.findAll();
+    return res.status(200).json(products);
+  };
+
+  static async getProductById(req, res) {
+    const { productId } = req.params;
+    const product = await database.Products.findAll({
+      where: {
+        id: Number(productId)
+      }
+    });
+    return res.status(200).json(product);
+  }
+
+}
+
+module.exports = ProductsController;

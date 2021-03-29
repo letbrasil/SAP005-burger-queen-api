@@ -5,11 +5,9 @@ const router = Router();
 
 // aqui vai as requisições
 router.get('/', ProductsController.getAllProducts);
-
-//  *** CRIAR FUNÇÕES DE CADA ENDPOINT NO CONTROLLER ***
-// router.get('/:productid', ProductsController.funcao)
-// router.post('/', ProductsController.funcao)
-// router.put('/:productid', ProductsController.funcao)
-// router.delete('/:productid', ProductsController.funcao)
+router.get('/:productId', ProductsController.getProductById);
+// router.post('/', ProductsController.funcao);
+// router.put('/:productId', ProductsController.funcao);
+// router.delete('/:productId', ProductsController.funcao);
 
 module.exports = router;
