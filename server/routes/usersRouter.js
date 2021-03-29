@@ -5,9 +5,7 @@ const router = Router();
 
 // aqui vai as requisições
 router.get('/', UsersController.getAllUsers);
-
-//  *** CRIAR FUNÇÕES DE CADA ENDPOINT NO CONTROLLER ***
-// router.get('/:uid', UsersController.funcao)
+router.get('/:uid', UsersController.getUserById)
 // router.post('/', UsersController.funcao)
 // router.put('/:uid', UsersController.funcao)
 // router.delete('/:uid', UsersController.funcao)

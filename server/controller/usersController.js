@@ -1,7 +1,22 @@
-// aqui vai o código que acessa o banco de dados
+const database = require('../db/models')
 
-const getAllUsers = (req, res) => {
-  res.send('Testando rota "/users"');
-};
+class UsersController {
 
-module.exports = { getAllUsers };
+  static async getAllUsers(req, res) {
+    const users = await database.Users.findAll();
+    return res.status(200).json(users);
+  }
+
+  static async getUserById(req, res) {
+    const { uid } = req.params;
+    const user = await database.Users.findAll({
+      where: {
+        id: Number(uid)
+      }
+    });
+    return res.status(200).json(user);
+  }
+
+}
+
+module.exports = UsersController;
