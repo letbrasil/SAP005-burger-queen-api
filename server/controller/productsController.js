@@ -21,6 +21,16 @@ class ProductsController {
     const product = await database.Products.create(newProduct);
     return res.status(200).json(product);
   }
+
+  static async deleteProduct(req, res) {
+    const { productId } = req.params;
+    await database.Products.destroy({
+      where: {
+        id: Number(productId),
+      },
+    });
+    return res.status(200).json('Produto apagado');
+  }
 }
 
 module.exports = ProductsController;

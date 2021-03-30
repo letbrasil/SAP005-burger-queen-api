@@ -24,6 +24,16 @@ class UsersController {
     const user = await database.Users.create(newUser);
     return res.status(200).json(user);
   }
+
+  static async deleteUser(req, res) {
+    const { uid } = req.params;
+    await database.Users.destroy({
+      where: {
+        id: Number(uid),
+      },
+    });
+    return res.status(200).json('Usuário apagado');
+  }
 }
 
 module.exports = UsersController;
