@@ -4,6 +4,7 @@ const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Users extends Model {
     static associate(models) {
+      // cada usuário pode ter vários pedidos
       Users.hasMany(models.Orders, {
         foreignKey: 'user_id'
       })
