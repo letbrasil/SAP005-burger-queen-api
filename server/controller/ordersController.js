@@ -38,6 +38,23 @@ class OrdersController {
     });
     return res.status(200).json(order);
   }
+
+  // static async createOrder(req, res) {
+  //   const newOrder = await req.body;
+
+  //   const order = await database.Orders.create(newOrder);
+  //   return res.status(201).json(order);
+  // }
+
+  // static async deleteOrder(req, res) {
+  //   const { orderId } = req.params;
+  //   await database.Orders.destroy({
+  //     where: {
+  //       id: Number(orderId),
+  //     },
+  //   });
+  //   return res.status(200).json('Pedido apagado');
+  // }
 }
 
 module.exports = OrdersController;
