@@ -46,15 +46,20 @@ class OrdersController {
   //   return res.status(201).json(order);
   // }
 
-  // static async deleteOrder(req, res) {
-  //   const { orderId } = req.params;
-  //   await database.Orders.destroy({
-  //     where: {
-  //       id: Number(orderId),
-  //     },
-  //   });
-  //   return res.status(200).json('Pedido apagado');
-  // }
+  static async deleteOrder(req, res) {
+    const { orderId } = req.params;
+    await database.ProductsOrders.destroy({
+      where: {
+        order_id: Number(orderId),
+      },
+    });
+    await database.Orders.destroy({
+      where: {
+        id: Number(orderId),
+      }
+    });
+    return res.status(200).json(`Pedido id #${orderId} apagado com sucesso!`);
+  }
 }
 
 module.exports = OrdersController;
