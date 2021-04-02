@@ -25,6 +25,26 @@ class UsersController {
     return res.status(201).json(user);
   }
 
+  static async updateUser(req, res) {
+    const { uid } = req.params;
+    const { name, password, role, restaurant } = req.body;
+    await database.Users.update({
+      name,
+      password,
+      role,
+      restaurant,
+    },
+    {
+      where: {
+        id: Number(uid),
+      },
+    });
+    const updatedUser = await database.Users.findByPk(uid, {
+      attributes: { exclude: ['password'] },
+    });
+    return res.status(200).json(updatedUser);
+  }
+
   static async deleteUser(req, res) {
     const { uid } = req.params;
     await database.Users.destroy({
@@ -32,7 +52,7 @@ class UsersController {
         id: Number(uid),
       },
     });
-    return res.status(200).json('Usuário apagado');
+    return res.status(200).json(`Usuário id #${uid} apagado com sucesso!`);
   }
 }
 

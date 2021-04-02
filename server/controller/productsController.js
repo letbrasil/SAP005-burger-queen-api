@@ -22,6 +22,27 @@ class ProductsController {
     return res.status(201).json(product);
   }
 
+  static async updateProduct(req, res) {
+    const { productId } = req.params;
+    const { name, price, flavor, complement, type, subtype, image } = req.body;
+    await database.Products.update({
+      name,
+      price,
+      flavor,
+      complement,
+      type,
+      subtype,
+      image,
+    },
+    {
+      where: {
+        id: Number(productId),
+      },
+    });
+    const updatedProduct = await database.Products.findByPk(productId);
+    return res.status(200).json(updatedProduct);
+  }
+
   static async deleteProduct(req, res) {
     const { productId } = req.params;
     await database.Products.destroy({
@@ -29,7 +50,7 @@ class ProductsController {
         id: Number(productId),
       },
     });
-    return res.status(200).json('Produto apagado');
+    return res.status(200).json(`Produto id #${productId} apagado com sucesso!`);
   }
 }
 
