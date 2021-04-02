@@ -1,7 +1,43 @@
-// aqui vai o código que acessa o banco de dados
+const database = require('../db/models');
 
-const getAllOrders = (req, res) => {
-  res.send('Testando rota "/orders"');
-};
+class OrdersController {
+  static async getAllOrders(req, res) {
+    const orders = await database.Orders.findAll({
+      include: [{
+        model: database.Products,
+        as: 'products',
+        required: false,
+        attributes: ['name', 'flavor', 'complement'],
+        through: {
+          model: database.ProductsOrders,
+          as: 'details',
+          attributes: ['product_id', 'qty'],
+        },
+      }],
+    });
+    return res.status(200).json(orders);
+  }
 
-module.exports = { getAllOrders };
+  static async getOrderById(req, res) {
+    const { orderId } = req.params;
+    const order = await database.Orders.findAll({
+      where: {
+        id: Number(orderId),
+      },
+      include: [{
+        model: database.Products,
+        as: 'products',
+        required: false,
+        attributes: ['name', 'flavor', 'complement'],
+        through: {
+          model: database.ProductsOrders,
+          as: 'details',
+          attributes: ['product_id', 'qty'],
+        },
+      }],
+    });
+    return res.status(200).json(order);
+  }
+}
+
+module.exports = OrdersController;

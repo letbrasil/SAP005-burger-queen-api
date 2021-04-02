@@ -22,7 +22,7 @@ class UsersController {
   static async createUser(req, res) {
     const newUser = await req.body;
     const user = await database.Users.create(newUser);
-    return res.status(200).json(user);
+    return res.status(201).json(user);
   }
 
   static async deleteUser(req, res) {

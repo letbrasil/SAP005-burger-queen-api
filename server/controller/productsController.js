@@ -19,7 +19,7 @@ class ProductsController {
   static async createProduct(req, res) {
     const newProduct = await req.body;
     const product = await database.Products.create(newProduct);
-    return res.status(200).json(product);
+    return res.status(201).json(product);
   }
 
   static async deleteProduct(req, res) {
