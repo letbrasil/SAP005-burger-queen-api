@@ -7,7 +7,7 @@ class OrdersController {
         model: database.Products,
         as: 'products',
         required: false,
-        attributes: ['name', 'flavor', 'complement'],
+        attributes: ['name', 'price', 'flavor', 'complement'],
         through: {
           model: database.ProductsOrders,
           as: 'details',
@@ -28,7 +28,7 @@ class OrdersController {
         model: database.Products,
         as: 'products',
         required: false,
-        attributes: ['name', 'flavor', 'complement'],
+        attributes: ['name', 'price', 'flavor', 'complement'],
         through: {
           model: database.ProductsOrders,
           as: 'details',
